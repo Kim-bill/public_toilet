@@ -1,0 +1,27 @@
+// GAS Web App URL -- replace with your deployed URL
+// Deploy: Google Apps Script Editor > Deploy > New Deployment > Web App
+const GAS_URL = 'YOUR_GAS_DEPLOYMENT_URL';
+
+/**
+ * Fetch all toilet data from Google Sheets via GAS.
+ * @returns {Promise<Array>} Array of toilet objects
+ * @throws {Error} If fetch fails or response is not ok
+ */
+export async function getToilets() {
+  const response = await fetch(`${GAS_URL}?action=getAll`, {
+    method: 'GET',
+    redirect: 'follow',
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch toilet data: ${response.status}`);
+  }
+
+  const result = await response.json();
+
+  if (result.status !== 'ok') {
+    throw new Error(result.error || 'Unknown API error');
+  }
+
+  return result.data;
+}
