@@ -48,9 +48,11 @@ Exceptions: Map container has 0px padding (full-bleed). Bottom sheet drag handle
 | Role | Size | Weight | Line Height | Usage |
 |------|------|--------|-------------|-------|
 | Body | 16px (1rem) | 400 (regular) | 1.5 | Bottom sheet detail text, location memo |
-| Label | 14px (0.875rem) | 600 (semibold) | 1.4 | Field labels in bottom sheet ("층", "비밀번호"), lock status badge |
+| Label | 14px (0.875rem) | 700 (bold) | 1.4 | Field labels in bottom sheet ("층", "비밀번호"), lock status badge |
 | Heading | 20px (1.25rem) | 700 (bold) | 1.2 | Building name in bottom sheet |
 | Small | 12px (0.75rem) | 400 (regular) | 1.4 | Loading state text, attribution |
+
+Font weights used: 400 (regular), 700 (bold). Two weights only.
 
 Language note: UI text is in Korean. System font stack renders Korean glyphs natively on all target devices (iOS Safari, Android Chrome).
 
@@ -75,6 +77,8 @@ Accent reserved for: loading spinner, bottom sheet drag handle active state, and
 ---
 
 ## Component Inventory (Phase 1)
+
+Primary focal point: the full-screen map canvas -- all supplemental UI (bottom sheet, loading overlay, error card) is layered over it and recedes when inactive.
 
 ### 1. Full-Screen Map Container
 
