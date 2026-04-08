@@ -1,3 +1,5 @@
+import { formatDistance } from './geo.js';
+
 const sheet = document.getElementById('bottom-sheet');
 const backdrop = document.getElementById('backdrop');
 const loadingOverlay = document.getElementById('loading-overlay');
@@ -16,6 +18,17 @@ export function showBottomSheet(toilet) {
   } else {
     lockBadge.textContent = '잠금 없음';
     lockBadge.className = 'lock-badge unlocked';
+  }
+
+  var distanceEl = document.getElementById('bs-distance');
+  var distanceLabelEl = document.getElementById('bs-distance-label');
+  if (toilet._distance != null) {
+    distanceEl.textContent = formatDistance(toilet._distance);
+    distanceEl.style.display = '';
+    distanceLabelEl.style.display = '';
+  } else {
+    distanceEl.style.display = 'none';
+    distanceLabelEl.style.display = 'none';
   }
 
   sheet.classList.add('open');

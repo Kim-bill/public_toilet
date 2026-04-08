@@ -19,6 +19,13 @@
 <body>
   <div id="map" style="width:100%;height:100vh;"></div>
 
+  <button id="gps-btn" type="button" aria-label="내 위치 찾기">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
+    </svg>
+  </button>
+
   <div id="backdrop"></div>
 
   <div id="bottom-sheet">
@@ -26,6 +33,8 @@
     <h2 id="bs-building"></h2>
     <span id="bs-lock" class="lock-badge"></span>
     <dl>
+      <dt id="bs-distance-label" class="distance-label" style="display:none">거리</dt>
+      <dd id="bs-distance" class="distance-value" style="display:none"></dd>
       <dt>층</dt>
       <dd id="bs-floor"></dd>
       <dt>위치 메모</dt>

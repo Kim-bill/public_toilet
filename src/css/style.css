@@ -163,6 +163,40 @@ html, body {
   color: #27ae60;
 }
 
+/* GPS floating button */
+#gps-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 16px;
+  z-index: 5;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #fff;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #0172ad;
+  padding: 0;
+}
+#gps-btn:active {
+  background: #f0f0f0;
+}
+#gps-btn.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Distance display in bottom sheet */
+.distance-value {
+  color: #0172ad;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
 /* Password display */
 #bs-password {
   color: #2c3e50;
