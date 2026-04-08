@@ -7,7 +7,7 @@
 
 ### Map (지도)
 
-- [ ] **MAP-01**: 카카오맵이 미사신도시 중심으로 렌더링된다
+- [x] **MAP-01**: 카카오맵이 미사신도시 중심으로 렌더링된다
 - [ ] **MAP-02**: 등록된 화장실 위치에 마커가 표시된다
 - [ ] **MAP-03**: 마커 탭 시 건물명, 층, 잠금여부, 비밀번호가 표시된다
 - [ ] **MAP-04**: 잠금 없음/있음에 따라 마커 색상이 구분된다
@@ -28,9 +28,9 @@
 
 ### Data (데이터)
 
-- [ ] **DATA-01**: 구글시트에 화장실 데이터가 저장된다
-- [ ] **DATA-02**: 구글시트에서 화장실 데이터를 조회할 수 있다
-- [ ] **DATA-03**: 미사신도시 주요 건물 좌표가 초기 데이터로 포함된다
+- [x] **DATA-01**: 구글시트에 화장실 데이터가 저장된다
+- [x] **DATA-02**: 구글시트에서 화장실 데이터를 조회할 수 있다
+- [x] **DATA-03**: 미사신도시 주요 건물 좌표가 초기 데이터로 포함된다
 
 ### UI (인터페이스)
 
@@ -65,7 +65,7 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| MAP-01 | Phase 1 | Pending |
+| MAP-01 | Phase 1 | Complete |
 | MAP-02 | Phase 1 | Pending |
 | MAP-03 | Phase 1 | Pending |
 | MAP-04 | Phase 1 | Pending |
@@ -77,9 +77,9 @@
 | CRUD-03 | Phase 2 | Pending |
 | CRUD-04 | Phase 2 | Pending |
 | CRUD-05 | Phase 2 | Pending |
-| DATA-01 | Phase 1 | Pending |
-| DATA-02 | Phase 1 | Pending |
-| DATA-03 | Phase 1 | Pending |
+| DATA-01 | Phase 1 | Complete |
+| DATA-02 | Phase 1 | Complete |
+| DATA-03 | Phase 1 | Complete |
 | UI-01 | Phase 3 | Pending |
 | UI-02 | Phase 3 | Pending |
 
