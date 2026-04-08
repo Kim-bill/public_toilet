@@ -73,6 +73,89 @@ function getAllToilets() {
  * @param {Object} data - Data to serialize as JSON
  * @returns {TextOutput} ContentService JSON response
  */
+/**
+ * GAS Web App POST entry point.
+ * Handles POST requests with action in body.
+ *
+ * @param {Object} e - Event object with postData property
+ * @returns {TextOutput} JSON response
+ */
+function doPost(e) {
+  var body = JSON.parse(e.postData.contents);
+
+  if (body.action === 'add') {
+    return addToilet(body.data);
+  }
+
+  if (body.action === 'update') {
+    return updateToilet(body.data);
+  }
+
+  return jsonResponse({ status: 'error', error: 'Unknown action' });
+}
+
+/**
+ * Add a new toilet record to the 'toilets' sheet.
+ *
+ * @param {Object} data - Toilet data with buildingName, latitude, longitude, etc.
+ * @returns {TextOutput} JSON response with new id and createdAt
+ */
+function addToilet(data) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('toilets');
+  var id = sheet.getLastRow();
+  var now = new Date().toISOString();
+
+  sheet.appendRow([
+    id,
+    data.buildingName,
+    data.floor || '',
+    data.locationMemo || '',
+    data.hasLock || false,
+    data.password || '',
+    data.latitude,
+    data.longitude,
+    data.region || 'misa new town',
+    data.category || '',
+    now,
+    now
+  ]);
+
+  return jsonResponse({ status: 'ok', data: { id: String(id), createdAt: now } });
+}
+
+/**
+ * Update an existing toilet record by ID.
+ * Only updates fields that are provided in the data object.
+ *
+ * @param {Object} data - Toilet data with id and fields to update
+ * @returns {TextOutput} JSON response with id and updatedAt
+ */
+function updateToilet(data) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('toilets');
+  var rows = sheet.getDataRange().getValues();
+  var now = new Date().toISOString();
+
+  for (var i = 1; i < rows.length; i++) {
+    if (String(rows[i][0]) === String(data.id)) {
+      var row = i + 1; // Sheet rows are 1-indexed
+
+      if (data.buildingName !== undefined) sheet.getRange(row, 2).setValue(data.buildingName);
+      if (data.floor !== undefined) sheet.getRange(row, 3).setValue(data.floor);
+      if (data.locationMemo !== undefined) sheet.getRange(row, 4).setValue(data.locationMemo);
+      if (data.hasLock !== undefined) sheet.getRange(row, 5).setValue(data.hasLock);
+      if (data.password !== undefined) sheet.getRange(row, 6).setValue(data.password);
+      if (data.category !== undefined) sheet.getRange(row, 10).setValue(data.category);
+
+      // Always update updatedAt
+      sheet.getRange(row, 12).setValue(now);
+
+      return jsonResponse({ status: 'ok', data: { id: String(data.id), updatedAt: now } });
+    }
+  }
+
+  return jsonResponse({ status: 'error', error: 'Toilet not found: ' + data.id });
+}
+
 function jsonResponse(data) {
   return ContentService
     .createTextOutput(JSON.stringify(data))

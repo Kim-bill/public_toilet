@@ -25,3 +25,49 @@ export async function getToilets() {
 
   return result.data;
 }
+
+/**
+ * Add a new toilet to Google Sheets via GAS.
+ * Uses text/plain content-type as CORS workaround for GAS POST.
+ *
+ * @param {Object} toiletData - Toilet data to add
+ * @returns {Promise<Object>} Response with id and createdAt
+ * @throws {Error} If fetch fails or response is not ok
+ */
+export async function addToilet(toiletData) {
+  const response = await fetch(GAS_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify({ action: 'add', data: toiletData }),
+    redirect: 'follow',
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to add toilet: ' + response.status);
+  }
+
+  return response.json();
+}
+
+/**
+ * Update an existing toilet in Google Sheets via GAS.
+ * Uses text/plain content-type as CORS workaround for GAS POST.
+ *
+ * @param {Object} toiletData - Toilet data with id and fields to update
+ * @returns {Promise<Object>} Response with id and updatedAt
+ * @throws {Error} If fetch fails or response is not ok
+ */
+export async function updateToilet(toiletData) {
+  const response = await fetch(GAS_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify({ action: 'update', data: toiletData }),
+    redirect: 'follow',
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to update toilet: ' + response.status);
+  }
+
+  return response.json();
+}
