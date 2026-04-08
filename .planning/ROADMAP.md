@@ -33,6 +33,7 @@ Plans:
 - [x] 01-01-PLAN.md — Scaffold Vite project with Kakao Map rendering and GitHub Pages deploy workflow
 - [x] 01-02-PLAN.md — Create GAS backend, frontend API layer, and seed data for Google Sheets
 - [x] 01-03-PLAN.md — Wire markers, bottom sheet, and data fetching into working toilet finder
+
 **UI hint**: yes
 
 ### Phase 2: GPS and CRUD
@@ -45,7 +46,12 @@ Plans:
   3. User can tap on the map to register a new toilet with building name, floor, location memo, lock status, and password
   4. User can edit an existing toilet's password and details
   5. User can copy a password to clipboard with one tap
-**Plans**: TBD
+**Plans**: 3 plans
+Plans:
+- [ ] 02-01-PLAN.md — GAS doPost backend, frontend API POST functions, and geo.js distance module
+- [ ] 02-02-PLAN.md — GPS button with current position display, nearest toilet finding, and distance
+- [ ] 02-03-PLAN.md — Map long-press registration, inline editing, and password clipboard copy
+
 **UI hint**: yes
 
 ### Phase 3: Mobile UX Polish
@@ -66,6 +72,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Map and Data | 0/3 | Planned    |  |
-| 2. GPS and CRUD | 0/TBD | Not started | - |
+| 1. Map and Data | 3/3 | Complete    |  |
+| 2. GPS and CRUD | 0/3 | Planned | - |
 | 3. Mobile UX Polish | 0/TBD | Not started | - |
