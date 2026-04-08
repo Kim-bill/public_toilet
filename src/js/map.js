@@ -55,3 +55,32 @@ export function clearMarkers(markers) {
     marker.setMap(null);
   });
 }
+
+let gpsMarker = null;
+
+export function showUserPosition(map, lat, lng) {
+  var position = new window.kakao.maps.LatLng(lat, lng);
+
+  if (gpsMarker) {
+    gpsMarker.setPosition(position);
+    return;
+  }
+
+  var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">' +
+    '<circle cx="12" cy="12" r="8" fill="#4285F4" stroke="white" stroke-width="3"/>' +
+    '</svg>';
+  var src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+  var size = new window.kakao.maps.Size(24, 24);
+  var option = { offset: new window.kakao.maps.Point(12, 12) };
+  var image = new window.kakao.maps.MarkerImage(src, size, option);
+
+  gpsMarker = new window.kakao.maps.Marker({
+    position: position,
+    image: image,
+    map: map
+  });
+}
+
+export function panTo(map, lat, lng) {
+  map.panTo(new window.kakao.maps.LatLng(lat, lng));
+}
