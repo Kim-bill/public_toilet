@@ -1,7 +1,7 @@
-import { initMap, createMarkers, clearMarkers, showUserPosition, panTo } from './js/map.js';
+import { initMap, createMarkers, clearMarkers, showUserPosition, panTo, setupLongPress } from './js/map.js';
 import { getToilets } from './js/api.js';
 import { getCurrentPosition, findNearest } from './js/geo.js';
-import { showLoading, hideLoading, showError, hideError } from './js/ui.js';
+import { showLoading, hideLoading, showError, hideError, showRegisterSheet } from './js/ui.js';
 import './css/style.css';
 
 let map = null;
@@ -28,6 +28,24 @@ async function loadToilets() {
 
 window._kakaoReady.then(() => {
   map = initMap('map');
+  loadToilets();
+  setupLongPress(map);
+});
+
+// Long-press on map opens registration form
+document.addEventListener('map-longpress', function(e) {
+  showRegisterSheet(e.detail.lat, e.detail.lng);
+});
+
+// New toilet registered — add marker immediately
+document.addEventListener('toilet-added', function(e) {
+  toilets.push(e.detail);
+  clearMarkers(markers);
+  markers = createMarkers(map, toilets);
+});
+
+// Toilet updated — refresh all data
+document.addEventListener('toilet-updated', function() {
   loadToilets();
 });
 
