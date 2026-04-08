@@ -23,7 +23,7 @@ async function loadToilets() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+window._kakaoReady.then(() => {
   map = initMap('map');
   loadToilets();
 });

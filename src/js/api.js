@@ -1,6 +1,6 @@
 // GAS Web App URL -- replace with your deployed URL
 // Deploy: Google Apps Script Editor > Deploy > New Deployment > Web App
-const GAS_URL = 'YOUR_GAS_DEPLOYMENT_URL';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbxRs8w5m4dCTPGZIYupqKCj3ECtRek9rJft49Bd4txi4kGrFwOEpEL1-_Vv7N98_ZE9hw/exec';
 
 /**
  * Fetch all toilet data from Google Sheets via GAS.
