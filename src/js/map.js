@@ -84,3 +84,32 @@ export function showUserPosition(map, lat, lng) {
 export function panTo(map, lat, lng) {
   map.panTo(new window.kakao.maps.LatLng(lat, lng));
 }
+
+export function setupLongPress(map) {
+  var longPressTimer = null;
+  var mapContainer = document.getElementById('map');
+
+  mapContainer.addEventListener('touchstart', function(e) {
+    if (e.touches.length !== 1) return;
+    longPressTimer = setTimeout(function() {
+      var proj = map.getProjection();
+      var rect = mapContainer.getBoundingClientRect();
+      var containerPoint = new window.kakao.maps.Point(
+        e.touches[0].clientX - rect.left,
+        e.touches[0].clientY - rect.top
+      );
+      var latLng = proj.coordsFromContainerPoint(containerPoint);
+      document.dispatchEvent(new CustomEvent('map-longpress', {
+        detail: { lat: latLng.getLat(), lng: latLng.getLng() }
+      }));
+    }, 700);
+  }, { passive: true });
+
+  mapContainer.addEventListener('touchend', function() {
+    clearTimeout(longPressTimer);
+  });
+
+  mapContainer.addEventListener('touchmove', function() {
+    clearTimeout(longPressTimer);
+  }, { passive: true });
+}

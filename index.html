@@ -42,12 +42,60 @@
       <dt>비밀번호</dt>
       <dd id="bs-password"></dd>
     </dl>
+    <div id="bs-actions" class="bs-actions">
+      <button id="edit-btn" type="button">수정</button>
+      <button id="copy-btn" type="button">복사</button>
+    </div>
+    <div id="bs-edit-actions" class="bs-actions" style="display:none">
+      <button id="save-edit-btn" type="button">저장</button>
+      <button id="cancel-edit-btn" type="button" class="secondary">취소</button>
+    </div>
+  </div>
+
+  <div id="register-sheet">
+    <div class="drag-handle"></div>
+    <h2>화장실 등록</h2>
+    <form id="register-form">
+      <label for="reg-building">건물명 <span class="required">*</span></label>
+      <input id="reg-building" type="text" name="buildingName" required placeholder="예: 스타필드 미사" />
+
+      <label for="reg-floor">층</label>
+      <input id="reg-floor" type="text" name="floor" placeholder="예: B1, 3F" />
+
+      <label for="reg-memo">위치 메모</label>
+      <input id="reg-memo" type="text" name="locationMemo" placeholder="예: 푸드코트 옆 통로" />
+
+      <label for="reg-category">카테고리</label>
+      <input id="reg-category" type="text" name="category" placeholder="예: 상업시설, 공공시설" />
+
+      <fieldset>
+        <label>
+          <input id="reg-haslock" type="checkbox" name="hasLock" role="switch" />
+          잠금 있음
+        </label>
+      </fieldset>
+
+      <div id="reg-password-group" style="display:none">
+        <label for="reg-password">비밀번호</label>
+        <input id="reg-password" type="text" name="password" placeholder="비밀번호 입력" />
+      </div>
+
+      <input id="reg-lat" type="hidden" name="latitude" />
+      <input id="reg-lng" type="hidden" name="longitude" />
+
+      <div class="bs-actions">
+        <button type="submit">등록</button>
+        <button id="cancel-register-btn" type="button" class="secondary">취소</button>
+      </div>
+    </form>
   </div>
 
   <div id="loading-overlay">
     <div class="spinner"></div>
     <p>화장실 정보를 불러오는 중...</p>
   </div>
+
+  <div id="toast" class="toast"></div>
 
   <div id="error-state">
     <div class="error-card">
