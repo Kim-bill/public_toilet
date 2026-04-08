@@ -65,29 +65,29 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| MAP-01 | — | Pending |
-| MAP-02 | — | Pending |
-| MAP-03 | — | Pending |
-| MAP-04 | — | Pending |
-| GPS-01 | — | Pending |
-| GPS-02 | — | Pending |
-| GPS-03 | — | Pending |
-| CRUD-01 | — | Pending |
-| CRUD-02 | — | Pending |
-| CRUD-03 | — | Pending |
-| CRUD-04 | — | Pending |
-| CRUD-05 | — | Pending |
-| DATA-01 | — | Pending |
-| DATA-02 | — | Pending |
-| DATA-03 | — | Pending |
-| UI-01 | — | Pending |
-| UI-02 | — | Pending |
+| MAP-01 | Phase 1 | Pending |
+| MAP-02 | Phase 1 | Pending |
+| MAP-03 | Phase 1 | Pending |
+| MAP-04 | Phase 1 | Pending |
+| GPS-01 | Phase 2 | Pending |
+| GPS-02 | Phase 2 | Pending |
+| GPS-03 | Phase 2 | Pending |
+| CRUD-01 | Phase 2 | Pending |
+| CRUD-02 | Phase 2 | Pending |
+| CRUD-03 | Phase 2 | Pending |
+| CRUD-04 | Phase 2 | Pending |
+| CRUD-05 | Phase 2 | Pending |
+| DATA-01 | Phase 1 | Pending |
+| DATA-02 | Phase 1 | Pending |
+| DATA-03 | Phase 1 | Pending |
+| UI-01 | Phase 3 | Pending |
+| UI-02 | Phase 3 | Pending |
 
 **Coverage:**
 - v1 requirements: 17 total
-- Mapped to phases: 0
-- Unmapped: 17 ⚠️
+- Mapped to phases: 17
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-04-08*
-*Last updated: 2026-04-08 after initial definition*
+*Last updated: 2026-04-08 after roadmap creation*
