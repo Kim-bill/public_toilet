@@ -30,9 +30,9 @@ Decimal phases appear between their surrounding integers in numeric order.
   5. App is deployed and accessible on GitHub Pages
 **Plans**: 3 plans
 Plans:
-- [ ] 01-01-PLAN.md — Scaffold Vite project with Kakao Map rendering and GitHub Pages deploy workflow
-- [ ] 01-02-PLAN.md — Create GAS backend, frontend API layer, and seed data for Google Sheets
-- [ ] 01-03-PLAN.md — Wire markers, bottom sheet, and data fetching into working toilet finder
+- [x] 01-01-PLAN.md — Scaffold Vite project with Kakao Map rendering and GitHub Pages deploy workflow
+- [x] 01-02-PLAN.md — Create GAS backend, frontend API layer, and seed data for Google Sheets
+- [x] 01-03-PLAN.md — Wire markers, bottom sheet, and data fetching into working toilet finder
 **UI hint**: yes
 
 ### Phase 2: GPS and CRUD
@@ -66,6 +66,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Map and Data | 0/3 | Not started | - |
+| 1. Map and Data | 0/3 | Planned    |  |
 | 2. GPS and CRUD | 0/TBD | Not started | - |
 | 3. Mobile UX Polish | 0/TBD | Not started | - |
