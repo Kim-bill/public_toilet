@@ -48,8 +48,8 @@ Plans:
   5. User can copy a password to clipboard with one tap
 **Plans**: 3 plans
 Plans:
-- [ ] 02-01-PLAN.md — GAS doPost backend, frontend API POST functions, and geo.js distance module
-- [ ] 02-02-PLAN.md — GPS button with current position display, nearest toilet finding, and distance
+- [x] 02-01-PLAN.md — GAS doPost backend, frontend API POST functions, and geo.js distance module
+- [x] 02-02-PLAN.md — GPS button with current position display, nearest toilet finding, and distance
 - [ ] 02-03-PLAN.md — Map long-press registration, inline editing, and password clipboard copy
 
 **UI hint**: yes
@@ -73,5 +73,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Map and Data | 3/3 | Complete    |  |
-| 2. GPS and CRUD | 0/3 | Planned | - |
+| 2. GPS and CRUD | 2/3 | In Progress|  |
 | 3. Mobile UX Polish | 0/TBD | Not started | - |

@@ -14,17 +14,17 @@
 
 ### GPS (위치)
 
-- [ ] **GPS-01**: GPS로 현재 위치가 지도에 표시된다
-- [ ] **GPS-02**: 현재 위치에서 가장 가까운 화장실을 찾을 수 있다
-- [ ] **GPS-03**: 각 화장실까지의 거리(m)가 표시된다
+- [x] **GPS-01**: GPS로 현재 위치가 지도에 표시된다
+- [x] **GPS-02**: 현재 위치에서 가장 가까운 화장실을 찾을 수 있다
+- [x] **GPS-03**: 각 화장실까지의 거리(m)가 표시된다
 
 ### CRUD (등록/수정)
 
-- [ ] **CRUD-01**: 지도 탭으로 새 화장실 위치를 등록할 수 있다
-- [ ] **CRUD-02**: 건물명, 층, 위치 메모를 입력할 수 있다
-- [ ] **CRUD-03**: 잠금 여부를 선택하고 비밀번호를 입력할 수 있다
-- [ ] **CRUD-04**: 기존 화장실의 비밀번호를 수정할 수 있다
-- [ ] **CRUD-05**: 비밀번호를 클립보드에 복사할 수 있다
+- [x] **CRUD-01**: 지도 탭으로 새 화장실 위치를 등록할 수 있다
+- [x] **CRUD-02**: 건물명, 층, 위치 메모를 입력할 수 있다
+- [x] **CRUD-03**: 잠금 여부를 선택하고 비밀번호를 입력할 수 있다
+- [x] **CRUD-04**: 기존 화장실의 비밀번호를 수정할 수 있다
+- [x] **CRUD-05**: 비밀번호를 클립보드에 복사할 수 있다
 
 ### Data (데이터)
 
@@ -69,14 +69,14 @@
 | MAP-02 | Phase 1 | Pending |
 | MAP-03 | Phase 1 | Pending |
 | MAP-04 | Phase 1 | Pending |
-| GPS-01 | Phase 2 | Pending |
-| GPS-02 | Phase 2 | Pending |
-| GPS-03 | Phase 2 | Pending |
-| CRUD-01 | Phase 2 | Pending |
-| CRUD-02 | Phase 2 | Pending |
-| CRUD-03 | Phase 2 | Pending |
-| CRUD-04 | Phase 2 | Pending |
-| CRUD-05 | Phase 2 | Pending |
+| GPS-01 | Phase 2 | Complete |
+| GPS-02 | Phase 2 | Complete |
+| GPS-03 | Phase 2 | Complete |
+| CRUD-01 | Phase 2 | Complete |
+| CRUD-02 | Phase 2 | Complete |
+| CRUD-03 | Phase 2 | Complete |
+| CRUD-04 | Phase 2 | Complete |
+| CRUD-05 | Phase 2 | Complete |
 | DATA-01 | Phase 1 | Complete |
 | DATA-02 | Phase 1 | Complete |
 | DATA-03 | Phase 1 | Complete |
