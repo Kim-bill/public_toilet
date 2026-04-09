@@ -87,35 +87,27 @@ export function panTo(map, lat, lng) {
 
 let searchMarker = null;
 
+var searchInfowindow = null;
+
 export function showSearchMarker(map, lat, lng, name) {
   if (searchMarker) {
     searchMarker.setMap(null);
   }
+  if (searchInfowindow) {
+    searchInfowindow.close();
+  }
 
   var position = new window.kakao.maps.LatLng(lat, lng);
-  var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="48" viewBox="0 0 36 48">' +
-    '<path d="M18 0C8.06 0 0 8.06 0 18c0 13.5 18 30 18 30s18-16.5 18-30C36 8.06 27.94 0 18 0z" fill="#0172ad"/>' +
-    '<circle cx="18" cy="18" r="8" fill="white"/>' +
-    '</svg>';
-  var src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
-  var size = new window.kakao.maps.Size(36, 48);
-  var option = { offset: new window.kakao.maps.Point(18, 48) };
-  var image = new window.kakao.maps.MarkerImage(src, size, option);
 
   searchMarker = new window.kakao.maps.Marker({
     position: position,
-    image: image,
     map: map
   });
 
-  var infowindow = new window.kakao.maps.InfoWindow({
+  searchInfowindow = new window.kakao.maps.InfoWindow({
     content: '<div style="padding:4px 8px;font-size:13px;white-space:nowrap;color:#000;">' + name + '</div>'
   });
-  infowindow.open(map, searchMarker);
-
-  setTimeout(function() {
-    infowindow.close();
-  }, 3000);
+  searchInfowindow.open(map, searchMarker);
 }
 
 export function clearSearchMarker() {
