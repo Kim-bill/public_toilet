@@ -87,7 +87,7 @@ function searchPlace() {
       var lat = parseFloat(place.y);
       var lng = parseFloat(place.x);
       panTo(map, lat, lng);
-      showSearchMarker(map, lat, lng, place.place_name);
+      showSearchMarker(map, lat, lng);
       searchInput.blur();
       searchClearBtn.classList.add('visible');
     } else {

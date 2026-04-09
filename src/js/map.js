@@ -85,42 +85,21 @@ export function panTo(map, lat, lng) {
   map.panTo(new window.kakao.maps.LatLng(lat, lng));
 }
 
-var searchOverlay = null;
+var searchMarker = null;
 
-export function showSearchMarker(map, lat, lng, name) {
+export function showSearchMarker(map, lat, lng) {
   clearSearchMarker();
-
   var position = new window.kakao.maps.LatLng(lat, lng);
-
-  var wrapper = document.createElement('div');
-  wrapper.style.cssText = 'display:flex;flex-direction:column;align-items:center;';
-
-  var label = document.createElement('div');
-  label.style.cssText = 'padding:5px 10px;background:#0172ad;border-radius:6px;font-size:13px;color:#fff;white-space:nowrap;box-shadow:0 2px 4px rgba(0,0,0,0.2);margin-bottom:4px;';
-  label.textContent = name;
-
-  var arrow = document.createElement('div');
-  arrow.style.cssText = 'width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #0172ad;';
-
-  var dot = document.createElement('div');
-  dot.style.cssText = 'width:10px;height:10px;background:#0172ad;border:2px solid #fff;border-radius:50%;margin-top:2px;box-shadow:0 1px 3px rgba(0,0,0,0.3);';
-
-  wrapper.appendChild(label);
-  wrapper.appendChild(arrow);
-  wrapper.appendChild(dot);
-
-  searchOverlay = new window.kakao.maps.CustomOverlay({
+  searchMarker = new window.kakao.maps.Marker({
     position: position,
-    content: wrapper,
-    yAnchor: 1
+    map: map
   });
-  searchOverlay.setMap(map);
 }
 
 export function clearSearchMarker() {
-  if (searchOverlay) {
-    searchOverlay.setMap(null);
-    searchOverlay = null;
+  if (searchMarker) {
+    searchMarker.setMap(null);
+    searchMarker = null;
   }
 }
 
