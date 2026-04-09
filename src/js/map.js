@@ -111,6 +111,10 @@ export function showSearchMarker(map, lat, lng, name) {
 }
 
 export function clearSearchMarker() {
+  if (searchInfowindow) {
+    searchInfowindow.close();
+    searchInfowindow = null;
+  }
   if (searchMarker) {
     searchMarker.setMap(null);
     searchMarker = null;
