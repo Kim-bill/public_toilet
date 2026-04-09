@@ -77,4 +77,4 @@ Phases execute in numeric order: 1 → 2 → 3
 |-------|----------------|--------|-----------|
 | 1. Map and Data | 3/3 | Complete    |  |
 | 2. GPS and CRUD | 2/3 | In Progress|  |
-| 3. Mobile UX Polish | 0/1 | Not started | - |
+| 3. Mobile UX Polish | 0/1 | Planned    |  |

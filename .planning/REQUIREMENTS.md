@@ -34,8 +34,8 @@
 
 ### UI (인터페이스)
 
-- [ ] **UI-01**: 모바일 화면에 최적화된 반응형 UI
-- [ ] **UI-02**: 터치 친화적인 버튼과 입력 필드 크기
+- [x] **UI-01**: 모바일 화면에 최적화된 반응형 UI
+- [x] **UI-02**: 터치 친화적인 버튼과 입력 필드 크기
 
 ## v2 Requirements
 
@@ -80,8 +80,8 @@
 | DATA-01 | Phase 1 | Complete |
 | DATA-02 | Phase 1 | Complete |
 | DATA-03 | Phase 1 | Complete |
-| UI-01 | Phase 3 | Pending |
-| UI-02 | Phase 3 | Pending |
+| UI-01 | Phase 3 | Complete |
+| UI-02 | Phase 3 | Complete |
 
 **Coverage:**
 - v1 requirements: 17 total
