@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/',
+  base: '/public_toilet/',
   build: {
     outDir: 'dist',
   },
