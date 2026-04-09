@@ -86,16 +86,10 @@ export function panTo(map, lat, lng) {
 }
 
 let searchMarker = null;
-
-var searchInfowindow = null;
+var searchOverlay = null;
 
 export function showSearchMarker(map, lat, lng, name) {
-  if (searchMarker) {
-    searchMarker.setMap(null);
-  }
-  if (searchInfowindow) {
-    searchInfowindow.close();
-  }
+  clearSearchMarker();
 
   var position = new window.kakao.maps.LatLng(lat, lng);
 
@@ -104,16 +98,22 @@ export function showSearchMarker(map, lat, lng, name) {
     map: map
   });
 
-  searchInfowindow = new window.kakao.maps.InfoWindow({
-    content: '<div style="padding:4px 8px;font-size:13px;white-space:nowrap;color:#000;">' + name + '</div>'
+  var content = document.createElement('div');
+  content.style.cssText = 'padding:4px 10px;background:#fff;border:1px solid #ccc;border-radius:4px;font-size:13px;color:#000;white-space:nowrap;box-shadow:0 2px 4px rgba(0,0,0,0.2);transform:translateY(-100%);margin-bottom:8px;';
+  content.textContent = name;
+
+  searchOverlay = new window.kakao.maps.CustomOverlay({
+    position: position,
+    content: content,
+    yAnchor: 2.5,
+    map: map
   });
-  searchInfowindow.open(map, searchMarker);
 }
 
-export function clearSearchMarker(map) {
-  if (searchInfowindow) {
-    searchInfowindow.setMap(null);
-    searchInfowindow = null;
+export function clearSearchMarker() {
+  if (searchOverlay) {
+    searchOverlay.setMap(null);
+    searchOverlay = null;
   }
   if (searchMarker) {
     searchMarker.setMap(null);
