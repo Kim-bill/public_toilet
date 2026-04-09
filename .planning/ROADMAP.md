@@ -62,7 +62,10 @@ Plans:
   1. UI is responsive and fills the mobile screen without horizontal scrolling
   2. All buttons and input fields are touch-friendly (minimum 44x44px tap targets)
   3. Loading states are visible during data fetch and GPS acquisition
-**Plans**: TBD
+**Plans**: 1 plan
+Plans:
+- [ ] 03-01-PLAN.md — Touch target sizing, loading state spinners, and mobile viewport polish
+
 **UI hint**: yes
 
 ## Progress
@@ -74,4 +77,4 @@ Phases execute in numeric order: 1 → 2 → 3
 |-------|----------------|--------|-----------|
 | 1. Map and Data | 3/3 | Complete    |  |
 | 2. GPS and CRUD | 2/3 | In Progress|  |
-| 3. Mobile UX Polish | 0/TBD | Not started | - |
+| 3. Mobile UX Polish | 0/1 | Not started | - |
