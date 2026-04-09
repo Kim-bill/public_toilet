@@ -216,8 +216,19 @@ html, body {
   display: flex;
   align-items: center;
 }
-#search-btn:active {
+#search-btn:active,
+#search-clear-btn:active {
   background: #f0f0f0;
+}
+#search-clear-btn {
+  background: #fff;
+  border: none;
+  padding: 0 10px;
+  cursor: pointer;
+  color: #999;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
 }
 
 /* GPS floating button */

@@ -1,4 +1,4 @@
-import { initMap, createMarkers, clearMarkers, showUserPosition, panTo, setupLongPress, showSearchMarker } from './js/map.js';
+import { initMap, createMarkers, clearMarkers, showUserPosition, panTo, setupLongPress, showSearchMarker, clearSearchMarker } from './js/map.js';
 import { getToilets } from './js/api.js';
 import { getCurrentPosition, findNearest } from './js/geo.js';
 import { showLoading, hideLoading, showError, hideError, showRegisterSheet } from './js/ui.js';
@@ -69,6 +69,7 @@ document.addEventListener('retry-fetch', () => {
 // Search functionality
 var searchInput = document.getElementById('search-input');
 var searchBtn = document.getElementById('search-btn');
+var searchClearBtn = document.getElementById('search-clear-btn');
 var ps = null;
 
 window._kakaoReady.then(function() {
@@ -88,6 +89,7 @@ function searchPlace() {
       panTo(map, lat, lng);
       showSearchMarker(map, lat, lng, place.place_name);
       searchInput.blur();
+      searchClearBtn.style.display = '';
     } else {
       alert('검색 결과가 없습니다.');
     }
@@ -95,6 +97,12 @@ function searchPlace() {
 }
 
 searchBtn.addEventListener('click', searchPlace);
+
+searchClearBtn.addEventListener('click', function() {
+  clearSearchMarker();
+  searchInput.value = '';
+  searchClearBtn.style.display = 'none';
+});
 searchInput.addEventListener('keydown', function(e) {
   if (e.key === 'Enter') {
     e.preventDefault();
