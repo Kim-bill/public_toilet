@@ -53,6 +53,9 @@ html, body {
   background: #ccc;
   border-radius: 2px;
   margin: 12px auto;
+  padding: 20px 0;
+  background-clip: content-box;
+  cursor: grab;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -143,6 +146,7 @@ html, body {
 
 .error-card button {
   font-size: 0.875rem;
+  min-height: 44px;
 }
 
 /* Lock badge */
@@ -186,8 +190,19 @@ html, body {
   background: #f0f0f0;
 }
 #gps-btn.loading {
-  opacity: 0.6;
   pointer-events: none;
+}
+#gps-btn.loading svg {
+  display: none;
+}
+#gps-btn.loading::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e0e0e0;
+  border-top-color: #0172ad;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
 }
 
 /* Distance display in bottom sheet */
@@ -244,7 +259,7 @@ html, body {
 /* Action buttons row */
 .bs-actions {
   display: flex;
-  gap: 8px;
+  gap: 12px;
   margin-top: 16px;
 }
 .bs-actions button {
@@ -280,6 +295,37 @@ html, body {
 .editable {
   border: 1px solid #0172ad;
   border-radius: 4px;
-  padding: 4px 8px;
+  padding: 8px 12px;
+  min-height: 44px;
   outline: none;
+}
+
+/* Register form inputs — touch-friendly sizing */
+#register-form input[type="text"] {
+  min-height: 44px;
+  font-size: 16px;  /* prevents iOS zoom on focus */
+}
+
+/* Sheets box-sizing */
+#bottom-sheet, #register-sheet {
+  box-sizing: border-box;
+}
+
+/* Save/register button loading state */
+.bs-actions button.saving {
+  pointer-events: none;
+  opacity: 0.7;
+  position: relative;
+}
+.bs-actions button.saving::after {
+  content: '';
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 8px;
 }
