@@ -1,4 +1,4 @@
-import { initMap, createMarkers, clearMarkers, showUserPosition, panTo, setupLongPress } from './js/map.js';
+import { initMap, createMarkers, clearMarkers, showUserPosition, panTo, setupLongPress, showSearchMarker } from './js/map.js';
 import { getToilets } from './js/api.js';
 import { getCurrentPosition, findNearest } from './js/geo.js';
 import { showLoading, hideLoading, showError, hideError, showRegisterSheet } from './js/ui.js';
@@ -78,7 +78,10 @@ function searchPlace() {
   ps.keywordSearch(keyword, function(data, status) {
     if (status === window.kakao.maps.services.Status.OK && data.length > 0) {
       var place = data[0];
-      panTo(map, parseFloat(place.y), parseFloat(place.x));
+      var lat = parseFloat(place.y);
+      var lng = parseFloat(place.x);
+      panTo(map, lat, lng);
+      showSearchMarker(map, lat, lng, place.place_name);
       searchInput.blur();
     } else {
       alert('검색 결과가 없습니다.');
