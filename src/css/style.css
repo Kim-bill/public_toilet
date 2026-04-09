@@ -191,7 +191,7 @@ html, body {
   margin: 0;
   border-radius: 0;
   background: #fff;
-  color: #222;
+  color: #000 !important;
 }
 #search-input::placeholder {
   color: #999;
