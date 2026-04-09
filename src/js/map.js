@@ -86,7 +86,7 @@ export function panTo(map, lat, lng) {
 }
 
 let searchMarker = null;
-var searchOverlay = null;
+var searchLabelEl = null;
 
 export function showSearchMarker(map, lat, lng, name) {
   clearSearchMarker();
@@ -98,22 +98,18 @@ export function showSearchMarker(map, lat, lng, name) {
     map: map
   });
 
-  var content = document.createElement('div');
-  content.style.cssText = 'padding:4px 10px;background:#fff;border:1px solid #ccc;border-radius:4px;font-size:13px;color:#000;white-space:nowrap;box-shadow:0 2px 4px rgba(0,0,0,0.2);transform:translateY(-100%);margin-bottom:8px;';
-  content.textContent = name;
-
-  searchOverlay = new window.kakao.maps.CustomOverlay({
-    position: position,
-    content: content,
-    yAnchor: 2.5,
-    map: map
-  });
+  // Create floating label as plain DOM above the map
+  searchLabelEl = document.createElement('div');
+  searchLabelEl.id = 'search-label';
+  searchLabelEl.textContent = name;
+  searchLabelEl.style.cssText = 'position:fixed;top:68px;left:50%;transform:translateX(-50%);padding:6px 14px;background:#fff;border:1px solid #ccc;border-radius:8px;font-size:14px;color:#000;white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,0.2);z-index:100;';
+  document.body.appendChild(searchLabelEl);
 }
 
 export function clearSearchMarker() {
-  if (searchOverlay) {
-    searchOverlay.setMap(null);
-    searchOverlay = null;
+  if (searchLabelEl) {
+    searchLabelEl.remove();
+    searchLabelEl = null;
   }
   if (searchMarker) {
     searchMarker.setMap(null);
