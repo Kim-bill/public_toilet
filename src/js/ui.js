@@ -118,6 +118,9 @@ regHasLock.addEventListener('change', function() {
 // Registration form submit handler
 registerForm.addEventListener('submit', async function(e) {
   e.preventDefault();
+  var submitBtn = registerForm.querySelector('button[type="submit"]');
+  submitBtn.classList.add('saving');
+  submitBtn.disabled = true;
   var formData = new FormData(registerForm);
   var toiletData = {
     buildingName: formData.get('buildingName'),
@@ -143,6 +146,9 @@ registerForm.addEventListener('submit', async function(e) {
   } catch (err) {
     console.error('Registration failed:', err);
     showToast('등록 실패: 네트워크 오류');
+  } finally {
+    submitBtn.classList.remove('saving');
+    submitBtn.disabled = false;
   }
 });
 
@@ -167,6 +173,8 @@ editBtn.addEventListener('click', function() {
 // Save edit handler
 saveEditBtn.addEventListener('click', async function() {
   if (!currentToilet) return;
+  saveEditBtn.classList.add('saving');
+  saveEditBtn.disabled = true;
   var updateData = {
     id: currentToilet.id,
     buildingName: document.getElementById('bs-building').textContent.trim(),
@@ -187,6 +195,9 @@ saveEditBtn.addEventListener('click', async function() {
   } catch (err) {
     console.error('Update failed:', err);
     showToast('수정 실패: 네트워크 오류');
+  } finally {
+    saveEditBtn.classList.remove('saving');
+    saveEditBtn.disabled = false;
   }
 });
 
