@@ -182,7 +182,9 @@ html, body {
   border-radius: 8px;
   overflow: hidden;
 }
-#search-input {
+#search-input,
+#search-input:focus,
+#search-input:active {
   flex: 1;
   border: none;
   padding: 12px 16px;
@@ -190,11 +192,14 @@ html, body {
   min-height: 44px;
   margin: 0;
   border-radius: 0;
-  background: #fff;
+  background: #fff !important;
   color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
+  opacity: 1 !important;
 }
 #search-input::placeholder {
-  color: #999;
+  color: #999 !important;
+  -webkit-text-fill-color: #999 !important;
 }
 #search-input:focus {
   outline: none;
