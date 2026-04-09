@@ -89,7 +89,7 @@ function searchPlace() {
       panTo(map, lat, lng);
       showSearchMarker(map, lat, lng, place.place_name);
       searchInput.blur();
-      searchClearBtn.style.display = '';
+      searchClearBtn.classList.add('visible');
     } else {
       alert('검색 결과가 없습니다.');
     }
@@ -101,7 +101,7 @@ searchBtn.addEventListener('click', searchPlace);
 searchClearBtn.addEventListener('click', function() {
   clearSearchMarker();
   searchInput.value = '';
-  searchClearBtn.style.display = 'none';
+  searchClearBtn.classList.remove('visible');
 });
 searchInput.addEventListener('keydown', function(e) {
   if (e.key === 'Enter') {

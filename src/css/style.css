@@ -181,7 +181,6 @@ html, body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   overflow: hidden;
-  height: 44px;
   pointer-events: auto;
 }
 #search-input,
@@ -227,8 +226,10 @@ html, body {
   cursor: pointer;
   color: #999;
   min-height: 44px;
-  display: flex;
   align-items: center;
+}
+#search-clear-btn.visible {
+  display: flex !important;
 }
 
 /* GPS floating button */
