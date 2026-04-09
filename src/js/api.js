@@ -1,6 +1,6 @@
 // GAS Web App URL -- replace with your deployed URL
 // Deploy: Google Apps Script Editor > Deploy > New Deployment > Web App
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbxRs8w5m4dCTPGZIYupqKCj3ECtRek9rJft49Bd4txi4kGrFwOEpEL1-_Vv7N98_ZE9hw/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbz-tQgGeRl6xN-AuAQWtben7BTjUGe5ZeCP3S13ZlxR1SOGRGGYhzZHv3FYvDuro3cqFg/exec';
 
 /**
  * Fetch all toilet data from Google Sheets via GAS.
@@ -57,6 +57,21 @@ export async function addToilet(toiletData) {
  * @returns {Promise<Object>} Response with id and updatedAt
  * @throws {Error} If fetch fails or response is not ok
  */
+export async function deleteToilet(id) {
+  const response = await fetch(GAS_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify({ action: 'delete', data: { id: id } }),
+    redirect: 'follow',
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to delete toilet: ' + response.status);
+  }
+
+  return response.json();
+}
+
 export async function updateToilet(toiletData) {
   const response = await fetch(GAS_URL, {
     method: 'POST',

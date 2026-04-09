@@ -1,5 +1,5 @@
 import { formatDistance } from './geo.js';
-import { addToilet, updateToilet } from './api.js';
+import { addToilet, updateToilet, deleteToilet } from './api.js';
 
 const sheet = document.getElementById('bottom-sheet');
 const backdrop = document.getElementById('backdrop');
@@ -205,6 +205,33 @@ saveEditBtn.addEventListener('click', async function() {
 cancelEditBtn.addEventListener('click', function() {
   exitEditMode();
   if (currentToilet) showBottomSheet(currentToilet);
+});
+
+// Delete button handler
+var deleteBtn = document.getElementById('delete-btn');
+deleteBtn.addEventListener('click', async function() {
+  if (!currentToilet) return;
+  if (!confirm(currentToilet.buildingName + ' 화장실을 삭제하시겠습니까?')) return;
+
+  deleteBtn.classList.add('saving');
+  deleteBtn.disabled = true;
+  try {
+    var result = await deleteToilet(currentToilet.id);
+    if (result.status === 'ok') {
+      hideBottomSheet();
+      showToast('삭제되었습니다');
+      document.dispatchEvent(new CustomEvent('toilet-deleted', { detail: { id: currentToilet.id } }));
+      currentToilet = null;
+    } else {
+      showToast('삭제 실패: ' + (result.error || '알 수 없는 오류'));
+    }
+  } catch (err) {
+    console.error('Delete failed:', err);
+    showToast('삭제 실패: 네트워크 오류');
+  } finally {
+    deleteBtn.classList.remove('saving');
+    deleteBtn.disabled = false;
+  }
 });
 
 // Copy button handler

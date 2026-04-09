@@ -91,6 +91,10 @@ function doPost(e) {
     return updateToilet(body.data);
   }
 
+  if (body.action === 'delete') {
+    return deleteToilet(body.data);
+  }
+
   return jsonResponse({ status: 'error', error: 'Unknown action' });
 }
 
@@ -150,6 +154,20 @@ function updateToilet(data) {
       sheet.getRange(row, 12).setValue(now);
 
       return jsonResponse({ status: 'ok', data: { id: String(data.id), updatedAt: now } });
+    }
+  }
+
+  return jsonResponse({ status: 'error', error: 'Toilet not found: ' + data.id });
+}
+
+function deleteToilet(data) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('toilets');
+  var rows = sheet.getDataRange().getValues();
+
+  for (var i = 1; i < rows.length; i++) {
+    if (String(rows[i][0]) === String(data.id)) {
+      sheet.deleteRow(i + 1);
+      return jsonResponse({ status: 'ok', data: { id: String(data.id) } });
     }
   }
 

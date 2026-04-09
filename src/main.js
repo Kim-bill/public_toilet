@@ -49,6 +49,13 @@ document.addEventListener('toilet-updated', function() {
   loadToilets();
 });
 
+// Toilet deleted — remove from list and refresh markers
+document.addEventListener('toilet-deleted', function(e) {
+  toilets = toilets.filter(function(t) { return t.id !== e.detail.id; });
+  clearMarkers(markers);
+  markers = createMarkers(map, toilets);
+});
+
 // Retry fetch on error state button click
 document.addEventListener('retry-fetch', () => {
   loadToilets();
