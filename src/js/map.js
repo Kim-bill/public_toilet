@@ -110,9 +110,9 @@ export function showSearchMarker(map, lat, lng, name) {
   searchInfowindow.open(map, searchMarker);
 }
 
-export function clearSearchMarker() {
+export function clearSearchMarker(map) {
   if (searchInfowindow) {
-    searchInfowindow.close();
+    searchInfowindow.setMap(null);
     searchInfowindow = null;
   }
   if (searchMarker) {
