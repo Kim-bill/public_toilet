@@ -61,6 +61,39 @@ document.addEventListener('retry-fetch', () => {
   loadToilets();
 });
 
+// Search functionality
+var searchInput = document.getElementById('search-input');
+var searchBtn = document.getElementById('search-btn');
+var ps = null;
+
+window._kakaoReady.then(function() {
+  ps = new window.kakao.maps.services.Places();
+});
+
+function searchPlace() {
+  if (!ps) return;
+  var keyword = searchInput.value.trim();
+  if (!keyword) return;
+
+  ps.keywordSearch(keyword, function(data, status) {
+    if (status === window.kakao.maps.services.Status.OK && data.length > 0) {
+      var place = data[0];
+      panTo(map, parseFloat(place.y), parseFloat(place.x));
+      searchInput.blur();
+    } else {
+      alert('검색 결과가 없습니다.');
+    }
+  });
+}
+
+searchBtn.addEventListener('click', searchPlace);
+searchInput.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    searchPlace();
+  }
+});
+
 // GPS button click handler
 document.getElementById('gps-btn').addEventListener('click', async function() {
   var btn = this;
