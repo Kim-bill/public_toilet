@@ -30,6 +30,11 @@ window._kakaoReady.then(() => {
   map = initMap('map');
   loadToilets();
   setupLongPress(map);
+
+  // Blur search input when map is touched
+  document.getElementById('map').addEventListener('touchstart', function() {
+    document.getElementById('search-input').blur();
+  }, { passive: true });
 });
 
 // Long-press on map opens registration form
