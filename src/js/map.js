@@ -7,7 +7,7 @@ export function initMap(containerId) {
   return new window.kakao.maps.Map(container, options);
 }
 
-function createMarkerImage(color) {
+function createCircleMarker(color) {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32">
     <circle cx="16" cy="16" r="14" fill="${color}" stroke="white" stroke-width="3"/>
   </svg>`;
@@ -17,13 +17,25 @@ function createMarkerImage(color) {
   return new window.kakao.maps.MarkerImage(src, size, option);
 }
 
+function createStarMarker() {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36">
+    <polygon points="18,2 22.5,13 34,13 24.5,21 28,32 18,25 8,32 11.5,21 2,13 13.5,13" fill="#3498db" stroke="white" stroke-width="2"/>
+  </svg>`;
+  const src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+  const size = new window.kakao.maps.Size(36, 36);
+  const option = { offset: new window.kakao.maps.Point(18, 18) };
+  return new window.kakao.maps.MarkerImage(src, size, option);
+}
+
 let MARKER_UNLOCKED = null;
 let MARKER_LOCKED = null;
+let MARKER_RESTAURANT = null;
 
 function ensureMarkerImages() {
   if (!MARKER_UNLOCKED) {
-    MARKER_UNLOCKED = createMarkerImage('#2ecc71');
-    MARKER_LOCKED = createMarkerImage('#e74c3c');
+    MARKER_UNLOCKED = createCircleMarker('#2ecc71');
+    MARKER_LOCKED = createCircleMarker('#e74c3c');
+    MARKER_RESTAURANT = createStarMarker();
   }
 }
 
@@ -34,7 +46,7 @@ export function createMarkers(map, toilets) {
   toilets.forEach(function(toilet) {
     const marker = new window.kakao.maps.Marker({
       position: new window.kakao.maps.LatLng(toilet.latitude, toilet.longitude),
-      image: toilet.hasLock ? MARKER_LOCKED : MARKER_UNLOCKED,
+      image: toilet.category === '맛집' ? MARKER_RESTAURANT : (toilet.hasLock ? MARKER_LOCKED : MARKER_UNLOCKED),
       clickable: true
     });
 
