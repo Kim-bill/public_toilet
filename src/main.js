@@ -1,7 +1,7 @@
 import { initMap, createMarkers, clearMarkers, showUserPosition, panTo, setupLongPress, showSearchMarker, clearSearchMarker } from './js/map.js';
 import { getToilets } from './js/api.js';
-import { getCurrentPosition, findNearest } from './js/geo.js';
-import { showLoading, hideLoading, showError, hideError, showRegisterSheet } from './js/ui.js';
+import { getCurrentPosition, findNearest, haversineDistance, formatDistance } from './js/geo.js';
+import { showLoading, hideLoading, showError, hideError, showRegisterSheet, showToast } from './js/ui.js';
 import './css/style.css';
 
 let map = null;
@@ -76,22 +76,66 @@ window._kakaoReady.then(function() {
   ps = new window.kakao.maps.services.Places();
 });
 
-function searchPlace() {
+var searchResultsEl = document.getElementById('search-results');
+
+function showSearchResults(results, userLat, userLng) {
+  searchResultsEl.innerHTML = '';
+  results.forEach(function(item) {
+    var li = document.createElement('li');
+
+    var nameSpan = document.createElement('span');
+    nameSpan.className = 'place-name';
+    nameSpan.textContent = item.place_name;
+    li.appendChild(nameSpan);
+
+    if (userLat != null && userLng != null) {
+      var dist = haversineDistance(userLat, userLng, parseFloat(item.y), parseFloat(item.x));
+      var distSpan = document.createElement('span');
+      distSpan.className = 'place-distance';
+      distSpan.textContent = formatDistance(dist);
+      li.appendChild(distSpan);
+    }
+
+    li.addEventListener('click', function() {
+      var lat = parseFloat(item.y);
+      var lng = parseFloat(item.x);
+      panTo(map, lat, lng);
+      showSearchMarker(map, lat, lng);
+      hideSearchResults();
+      searchInput.blur();
+      searchClearBtn.classList.add('visible');
+    });
+
+    searchResultsEl.appendChild(li);
+  });
+  searchResultsEl.classList.add('visible');
+}
+
+function hideSearchResults() {
+  searchResultsEl.classList.remove('visible');
+  searchResultsEl.innerHTML = '';
+}
+
+async function searchPlace() {
   if (!ps) return;
   var keyword = searchInput.value.trim();
   if (!keyword) return;
 
+  var userLat = null;
+  var userLng = null;
+  try {
+    var pos = await getCurrentPosition();
+    userLat = pos.lat;
+    userLng = pos.lng;
+  } catch (e) {
+    // Location unavailable — proceed without distance
+  }
+
   ps.keywordSearch(keyword, function(data, status) {
     if (status === window.kakao.maps.services.Status.OK && data.length > 0) {
-      var place = data[0];
-      var lat = parseFloat(place.y);
-      var lng = parseFloat(place.x);
-      panTo(map, lat, lng);
-      showSearchMarker(map, lat, lng);
-      searchInput.blur();
-      searchClearBtn.classList.add('visible');
+      showSearchResults(data.slice(0, 5), userLat, userLng);
     } else {
-      alert('검색 결과가 없습니다.');
+      showToast('검색 결과가 없습니다');
     }
   });
 }
@@ -102,6 +146,14 @@ searchClearBtn.addEventListener('click', function() {
   clearSearchMarker();
   searchInput.value = '';
   searchClearBtn.classList.remove('visible');
+  hideSearchResults();
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+  if (!searchResultsEl.contains(e.target) && !document.getElementById('search-bar').contains(e.target)) {
+    hideSearchResults();
+  }
 });
 searchInput.addEventListener('keydown', function(e) {
   if (e.key === 'Enter') {
