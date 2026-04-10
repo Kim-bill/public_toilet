@@ -117,13 +117,16 @@ document.getElementById('gps-btn').addEventListener('click', async function() {
 
   try {
     var pos = await getCurrentPosition();
+    // 1. 현위치로 지도 이동 (내 위치가 중심)
+    panTo(map, pos.lat, pos.lng);
+    // 2. 파란 점으로 내 위치 표시
     showUserPosition(map, pos.lat, pos.lng);
-
+    // 3. 반경 3km 내 화장실에 거리 계산
     if (toilets.length > 0) {
-      var nearest = findNearest(pos.lat, pos.lng, toilets);
-      if (nearest) {
-        panTo(map, nearest.latitude, nearest.longitude);
-        document.dispatchEvent(new CustomEvent('toilet-selected', { detail: nearest }));
+      findNearest(pos.lat, pos.lng, toilets); // _distance 부여
+      var nearby = toilets.filter(function(t) { return t._distance <= 3000; });
+      if (nearby.length === 0) {
+        alert('반경 3km 내 등록된 화장실이 없습니다.');
       }
     }
   } catch (err) {
