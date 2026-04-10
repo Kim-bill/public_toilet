@@ -75,7 +75,7 @@ function hideRegisterSheet() {
   backdrop.classList.remove('visible');
 }
 
-function showToast(message) {
+export function showToast(message) {
   toast.textContent = message;
   toast.classList.add('visible');
   setTimeout(function() {
