@@ -80,8 +80,13 @@ None yet.
 - [Research]: GAS POST requires text/plain content-type for CORS workaround
 - [Research]: iOS Safari geolocation resets permission on page refresh for non-PWA apps
 
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260410-k75 | 검색창 UX 1순위 업그레이드: 검색 결과 리스트 드롭다운, GPS 거리 표시, 토스트 메시지 | 2026-04-10 | e7322bc | [260410-k75-ux-1-gps](./quick/260410-k75-ux-1-gps/) |
+
 ## Session Continuity
 
-Last session: 2026-04-09T02:08:47.009Z
-Stopped at: Completed 03-01-PLAN.md
+Last activity: 2026-04-10 - Completed quick task 260410-k75: 검색창 UX 1순위 업그레이드
 Resume file: None
