@@ -235,7 +235,7 @@ html, body {
 /* Search results dropdown */
 .search-results {
   position: fixed;
-  top: 56px;
+  top: 68px;
   left: 12px;
   right: 12px;
   z-index: 99;
